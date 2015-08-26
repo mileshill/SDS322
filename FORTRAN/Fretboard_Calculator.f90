@@ -1,3 +1,5 @@
+! Calculate location of frets on standard guitar
+
 program Fretboard_Calculator
     implicit none
 
