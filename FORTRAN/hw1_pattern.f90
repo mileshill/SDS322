@@ -1,17 +1,22 @@
 PROGRAM pattern
         IMPLICIT NONE
-
+       
+        ! var declaration
         INTEGER :: i, input
         
+        ! prompt user	
         print *, 'Enter integer input' 
         read *, input
 
+	! logic block
         select case ( input )
-                case ( 1)
+               ! input .eq. 1
+		case ( 1 )
                         write(*,*) '*'
                         write(*,*) '*'
-                case default
-                        do i = 1, input
+                ! input .ne. 1
+		case default
+			do i = 1, input
                                 write(*,*) repeat('*',i)
                         end do
                         do i = input-1, 1, -1

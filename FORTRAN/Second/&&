@@ -1,0 +1,42 @@
+program main
+        use Triangle       ! derived type and functions
+        implicit none
+        
+        ! variables
+        real :: a=0., b=0., c=0.         ! legs of triangle
+        real, dimension(3) :: interior   ! values of acute angles
+        type(tri) :: my_tri         ! type instantiation
+        
+        ! obtian user input: expecting 2 or 3 args        
+        write(*,*) 'Enter 3 parameters for pythagorean test'
+        write(*,*) 'Enter 2 parameters and 0 for hypotenuse'
+        read *,  a, b, c
+              
+        print*, 'law of cosines'
+        write(*,*) LofCos(a,b,c)
+
+        print*, heron_area(a,b,c) 
+        if (c .eq. 0.0) then
+                write(*,*) 'Hypot:', hypot(a,b)         ! Two params -> hypt
+        elseif( hyp(a,b,c) .ne. 0.0) then
+                write(*,*) 'Not a right triangle'       ! RTri test
+        else
+                ! assign sides
+                my_tri%a = a
+                my_tri%b = b
+                my_tri%c = hypot(a,b)
+
+                ! assign angles
+                interior = LofCos(a,b,c)
+                my_tri%alpha = interior(1)
+                my_tri%beta  = interior(2)
+
+                ! assign area
+            
+                write(*,*) 'Sides:', my_tri%a, my_tri%b 
+                write(*,*) 'Hypot:', my_tri%c
+                write(*,*) 'Angle:', my_tri%alpha, my_tri%beta, 90.0
+                !write(*,*) 'Area :', my_tri%area
+        endif                                        
+end program main
+       
